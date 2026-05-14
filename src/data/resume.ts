@@ -60,7 +60,7 @@ export const RESUME_DATA: ResumeData = {
       degree: "Bachelor of Technology in Computer Science and Engineering",
       location: "Uttar Pradesh, India",
       period: "Aug. 2022 – Jun. 2026",
-      details: ["CGPA: 7.68/10.0"]
+      details: ["CGPA: 7.7/10.0"]
     },
     {
       school: "Central Board of Secondary Education (CBSE)",
@@ -103,8 +103,8 @@ export const RESUME_DATA: ResumeData = {
       items: ["React.js", "React Native", "Node.js", "FastAPI", "Tailwind CSS", "Firebase", "REST APIs"]
     },
     {
-      category: "IoT & Automation",
-      items: ["MQTT", "n8n", "Workflow Orchestration", "Sensor Integration", "Webhook APIs"]
+      category: "Automation",
+      items: ["n8n", "Workflow Orchestration", "Webhook APIs"]
     },
     {
       category: "Languages & Tools",
