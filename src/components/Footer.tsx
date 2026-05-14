@@ -11,18 +11,18 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative z-20 bg-black text-white pt-40 pb-20 px-6 md:px-24 border-t border-white/10">
+    <footer className="relative z-20 bg-background text-foreground pt-40 pb-20 px-6 md:px-24 border-t border-foreground/10">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-40">
           <div>
-            <h2 className="text-sm font-black tracking-[0.3em] uppercase text-white/40 mb-8">// Get in Touch</h2>
+            <h2 className="text-sm font-black tracking-[0.3em] uppercase text-foreground/40 mb-8">// Get in Touch</h2>
             <p className="text-4xl md:text-7xl font-bold tracking-tighter mb-12 uppercase leading-[0.8]">
               Let's build for<br />
-              <span className="text-white/20 italic">Tomorrow.</span>
+              <span className="text-foreground/20 italic">Tomorrow.</span>
             </p>
             <a 
               href={`mailto:${email}`} 
-              className="group flex items-center gap-4 text-2xl md:text-4xl font-semibold hover:text-white/60 transition-colors break-all"
+              className="group flex items-center gap-4 text-2xl md:text-4xl font-semibold hover:text-foreground/60 transition-colors break-all"
             >
               {email}
               <ArrowUpRight className="w-8 h-8 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform flex-shrink-0" />
@@ -32,18 +32,18 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="space-y-8">
               <div>
-                <h3 className="text-[10px] font-black tracking-widest uppercase text-white/30 mb-4">Location</h3>
-                <div className="flex items-center gap-2 text-white/60">
+                <h3 className="text-[10px] font-black tracking-widest uppercase text-foreground/30 mb-4">Location</h3>
+                <div className="flex items-center gap-2 text-foreground/60">
                   <MapPin className="w-4 h-4" />
                   <span className="text-lg font-medium">{location}</span>
                 </div>
               </div>
               
               <div className="flex gap-6">
-                <a href={github} target="_blank" rel="noopener noreferrer" className="p-4 border border-white/10 hover:border-white/40 transition-colors rounded-full text-white/40 hover:text-white">
+                <a href={github} target="_blank" rel="noopener noreferrer" className="p-4 border border-foreground/10 hover:border-foreground/40 transition-colors rounded-full text-foreground/40 hover:text-foreground">
                   <Github className="w-6 h-6" />
                 </a>
-                <a href={linkedin} target="_blank" rel="noopener noreferrer" className="p-4 border border-white/10 hover:border-white/40 transition-colors rounded-full text-white/40 hover:text-white">
+                <a href={linkedin} target="_blank" rel="noopener noreferrer" className="p-4 border border-foreground/10 hover:border-foreground/40 transition-colors rounded-full text-foreground/40 hover:text-foreground">
                   <Linkedin className="w-6 h-6" />
                 </a>
               </div>
@@ -52,7 +52,7 @@ export default function Footer() {
             <div className="flex flex-col justify-end items-end md:items-start">
                <button 
                  onClick={scrollToTop}
-                 className="flex items-center gap-4 text-xs font-black tracking-widest uppercase text-white/30 hover:text-white transition-colors"
+                 className="flex items-center gap-4 text-xs font-black tracking-widest uppercase text-foreground/30 hover:text-foreground transition-colors"
                >
                  Back to Top
                  <ArrowUpRight className="w-4 h-4 -rotate-45" />
@@ -61,7 +61,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-[10px] font-black tracking-widest uppercase text-white/20">
+        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-foreground/5 text-[10px] font-black tracking-widest uppercase text-foreground/20">
           <p>© {new Date().getFullYear()} {name} — Portfolio</p>
           <p className="mt-4 md:mt-0 italic font-medium">Production-Ready Build v1.0</p>
         </div>

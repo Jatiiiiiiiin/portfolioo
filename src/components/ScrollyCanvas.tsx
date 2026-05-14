@@ -156,12 +156,12 @@ export default function ScrollyCanvas() {
   });
 
   return (
-    <div ref={containerRef} className="relative h-[500vh] w-full bg-black">
+    <div ref={containerRef} className="relative h-[500vh] w-full bg-background">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         <canvas
           ref={canvasRef}
           style={{ width: "100%", height: "100%" }}
-          className="absolute inset-0"
+          className="absolute inset-0 dark:invert-0 invert transition-all duration-1000"
         />
         
         <LoadingIndicator loaded={imagesLoaded} total={FRAME_COUNT} />
@@ -176,15 +176,15 @@ function LoadingIndicator({ loaded, total }: { loaded: number; total: number }) 
   
   return (
     <div className="absolute bottom-10 left-10 flex flex-col gap-2 z-50">
-      <div className="text-white/20 text-[10px] font-black tracking-[0.3em] uppercase">
+      <div className="text-foreground/20 text-[10px] font-black tracking-[0.3em] uppercase">
         Initializing Sequence
       </div>
       <div className="flex items-end gap-3">
-        <div className="text-white text-4xl font-bold tracking-tighter">
+        <div className="text-foreground text-4xl font-bold tracking-tighter">
           {Math.floor((loaded / total) * 100)}%
         </div>
-        <div className="h-6 w-px bg-white/10 mb-1" />
-        <div className="text-white/40 text-[10px] font-bold mb-1 uppercase tracking-widest">
+        <div className="h-6 w-px bg-foreground/10 mb-1" />
+        <div className="text-foreground/40 text-[10px] font-bold mb-1 uppercase tracking-widest">
           {loaded} / {total} Assets
         </div>
       </div>

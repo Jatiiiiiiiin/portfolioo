@@ -5,10 +5,12 @@ import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Certifications from "@/components/Certifications";
 import Footer from "@/components/Footer";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-black">
+    <main className="relative min-h-screen bg-background text-foreground transition-colors duration-500">
+      <ThemeToggle />
       {/* 
         The ScrollyCanvas component contains a 500vh container.
         The Overlay sits on top as a fixed element linked to scroll.

@@ -3,10 +3,11 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+import { FileText, Download } from "lucide-react";
 import { RESUME_DATA } from "@/data/resume";
 
 export default function Overlay() {
-  const { name, title, education } = RESUME_DATA;
+  const { name, title, education, resume } = RESUME_DATA;
   const containerRef = useRef<HTMLDivElement>(null);
   
   const { scrollY } = useScroll();
@@ -71,6 +72,20 @@ export default function Overlay() {
           <span className="text-white/30 lowercase italic font-normal tracking-wide">Building for tomorrow today.</span>
         </h2>
       </motion.div>
+      {/* Resume Download Button */}
+      <motion.a
+        href={resume}
+        download
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 1, duration: 0.8 }}
+        className="fixed bottom-8 left-8 z-50 flex items-center gap-3 px-6 py-4 bg-foreground text-background rounded-full font-black tracking-widest uppercase text-[10px] hover:scale-105 active:scale-95 transition-all pointer-events-auto group shadow-2xl"
+      >
+        <FileText className="w-4 h-4" />
+        Resume
+        <div className="w-px h-3 bg-background/20" />
+        <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+      </motion.a>
     </div>
   );
 }

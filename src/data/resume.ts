@@ -23,6 +23,7 @@ export interface Certification {
   title: string;
   issuer: string;
   details?: string;
+  link?: string;
 }
 
 export interface ResumeData {
@@ -33,6 +34,8 @@ export interface ResumeData {
   phone: string;
   linkedin: string;
   github: string;
+  leetcode?: string;
+  resume: string;
   summary: string;
   education: Education[];
   experience: Experience[];
@@ -48,6 +51,8 @@ export const RESUME_DATA: ResumeData = {
   phone: "+91 9719543817",
   linkedin: "https://linkedin.com/in/jatin-thakurr",
   github: "https://github.com/Jatiiiiiiiin",
+  leetcode: "https://leetcode.com/u/jatinjatinth/",
+  resume: "/Jatin_resume.pdf",
   summary: "Full-Stack & AI/ML Developer with 4+ production-grade projects and 2 internships in professional Agile environments, specializing in LangChain, RAG pipelines, IoT integration, workflow automation, and React — seeking impactful roles in AI-powered product development and intelligent systems.",
   education: [
     {
@@ -110,17 +115,20 @@ export const RESUME_DATA: ResumeData = {
     {
       title: "Qualcomm AI Upskilling Certificate",
       issuer: "Qualcomm",
-      details: "Technical Foundations (AI/ML Specialization)"
+      details: "Technical Foundations (AI/ML Specialization)",
+      link: "/AI-Upskilling-certificate.pdf"
     },
     {
       title: "Python (Basics) Certificate",
       issuer: "HackerRank",
-      details: "Achieved 5-Star rating in Python on HackerRank."
+      details: "Achieved 5-Star rating in Python on HackerRank.",
+      link: "https://www.hackerrank.com/certificates/886425bf72a9"
     },
     {
       title: "LeetCode Problem Solving",
       issuer: "LeetCode",
-      details: "Solved 80+ problems in Python, strengthening DSA skills."
+      details: "Solved 80+ problems in Python, strengthening DSA skills.",
+      link: "https://leetcode.com/u/jatinjatinth/"
     }
   ]
 };
