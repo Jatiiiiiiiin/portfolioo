@@ -17,23 +17,59 @@ export default function ScrollyCanvas() {
 
   // Load and cache all images on mount
   useEffect(() => {
-    const loadedImages: HTMLImageElement[] = [];
+    const loadedImages: HTMLImageElement[] = new Array(FRAME_COUNT);
     let loadedCount = 0;
 
-    for (let i = 0; i < FRAME_COUNT; i++) {
-      const img = new Image();
-      const index = i.toString().padStart(2, "0");
-      img.src = `/sequence/frame_${index}_delay-0.067s.png`;
+    // Helper to load a single image
+    const loadImage = (index: number) => {
+      return new Promise<void>((resolve) => {
+        const img = new Image();
+        const frameIndex = index.toString().padStart(2, "0");
+        img.src = `/sequence/frame_${frameIndex}_optimized.webp`;
 
-      img.onload = () => {
-        loadedCount++;
-        setImagesLoaded(loadedCount);
-      };
+        img.onload = () => {
+          loadedImages[index] = img;
+          loadedCount++;
+          setImagesLoaded(loadedCount);
+          resolve();
+        };
 
-      loadedImages.push(img);
-    }
+        // If an image fails to load, still resolve to continue the chain
+        img.onerror = () => {
+          console.error(`Failed to load frame ${index}`);
+          loadedCount++;
+          setImagesLoaded(loadedCount);
+          resolve();
+        };
+      });
+    };
 
-    setImages(loadedImages);
+    const loadAllImages = async () => {
+      // 1. Load the first frame immediately for instant visual
+      await loadImage(0);
+      setImages([...loadedImages]);
+
+      // 2. Load the next 10 frames for initial scroll buffer
+      const initialBuffer = [];
+      for (let i = 1; i < 15; i++) {
+        initialBuffer.push(loadImage(i));
+      }
+      await Promise.all(initialBuffer);
+      setImages([...loadedImages]);
+
+      // 3. Load the rest in chunks to avoid slamming the network
+      const CHUNK_SIZE = 10;
+      for (let i = 15; i < FRAME_COUNT; i += CHUNK_SIZE) {
+        const chunk = [];
+        for (let j = i; j < Math.min(i + CHUNK_SIZE, FRAME_COUNT); j++) {
+          chunk.push(loadImage(j));
+        }
+        await Promise.all(chunk);
+        setImages([...loadedImages]);
+      }
+    };
+
+    loadAllImages();
   }, []);
 
   // Framer motion scroll tracking
