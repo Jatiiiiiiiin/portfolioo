@@ -100,7 +100,7 @@ export const RESUME_DATA: ResumeData = {
     },
     {
       category: "Web Development",
-      items: ["React.js", "React Native", "Node.js", "FastAPI", "Tailwind CSS", "Firebase", "REST APIs"]
+      items: ["React.js", "Node.js", "FastAPI", "Tailwind CSS", "Firebase", "REST APIs"]
     },
     {
       category: "Automation",
