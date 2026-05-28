@@ -7,7 +7,6 @@ export interface Education {
 }
 
 
-
 export interface Experience {
   company: string;
   role: string;
