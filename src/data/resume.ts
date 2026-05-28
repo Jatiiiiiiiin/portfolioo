@@ -6,6 +6,8 @@ export interface Education {
   details: string[];
 }
 
+
+
 export interface Experience {
   company: string;
   role: string;
