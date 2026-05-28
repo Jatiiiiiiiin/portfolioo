@@ -14,6 +14,8 @@ export interface Experience {
   description: string[];
 }
 
+
+
 export interface SkillCategory {
   category: string;
   items: string[];
