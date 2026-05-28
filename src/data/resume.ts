@@ -21,6 +21,8 @@ export interface SkillCategory {
 
 
 
+
+
 export interface Certification {
   title: string;
   issuer: string;
