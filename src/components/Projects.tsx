@@ -1,90 +1,165 @@
-import { ArrowRight, Github } from "lucide-react";
+"use client";
+
+import { useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { PROJECTS as ALL_PROJECTS } from "@/data/projects";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { PROJECTS } from "@/data/projects";
 
-const PROJECTS = ALL_PROJECTS;
-
-const ADDITIONAL_PROJECTS = ["Cookie Music", "Bussly", "ABESIT Clone", "Portfolio"];
+const PROJECT_IMAGES: Record<string, string> = {
+  "linkedin-automation": "/images/project-linkedin-automation.png",
+  "asterix-find": "/images/project-asterix-find.png",
+  "ai-youtube-summarizer": "/images/project-ai-youtube.png",
+  "ai-pdf-chat": "/images/project-pdf-chat.png",
+  "waste-management-ai": "/images/project-waste-ai.png",
+  "quikping": "/images/project-quikping.png",
+  "loovo": "/images/project-loovo.png",
+  "pokemon-explorer": "/images/project-pokemon.png",
+};
 
 export default function Projects() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const displayProjects = PROJECTS.slice(0, 6);
+
   return (
-    <section id="projects" className="relative z-20 bg-background py-32 px-6 md:px-24">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div>
-            <h2 className="text-5xl md:text-8xl font-bold tracking-tighter text-foreground uppercase">
-              Featured<br />Projects
-            </h2>
-            <div className="h-1 w-24 bg-foreground mt-8" />
+    <section
+      ref={containerRef}
+      id="projects"
+      className="relative bg-background py-20 md:py-36 px-4 sm:px-6 md:px-12 border-t border-foreground/5"
+    >
+      {/* Controlled Container Max-Width for Compact Layout */}
+      <div className="max-w-[1080px] mx-auto">
+        {/* Header - Exact Reference Match */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-12 md:mb-20"
+        >
+          <div className="inline-block px-3 py-1 bg-white border border-foreground/10 rounded text-[10px] font-bold tracking-[0.2em] uppercase text-foreground/60 mb-4 shadow-sm">
+            <span className="text-accent mr-1.5">✳</span>PORTFOLIO
           </div>
-          <p className="text-foreground/40 text-xl max-w-sm font-light leading-relaxed">
-            Building scalable, production-ready systems for tomorrow, today.
-          </p>
+          <h2 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.85] text-foreground">
+            OUR
+            <br />
+            <span className="text-foreground/30">PROJECTS.</span>
+          </h2>
+        </motion.div>
+
+        {/* 2-Column Compact Grid with Closed Gap */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start max-w-[850px] mx-auto">
+          {displayProjects.map((project, index) => {
+            const isWide = index === 2;
+
+            return (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                isWide={isWide}
+              />
+            );
+          })}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-foreground/10 border border-foreground/10">
-          {PROJECTS.map((project) => (
-            <div
-              key={project.id}
-              className="group relative flex flex-col justify-between p-8 md:p-12 bg-background hover:bg-foreground/[0.02] transition-colors duration-500 min-h-[500px]"
-            >
-              <div className="flex justify-between items-start">
-                <span className="text-6xl font-black text-foreground/5 group-hover:text-foreground/10 transition-colors duration-500">
-                  {project.id}
-                </span>
-                {project.github && (
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-foreground/30 hover:text-foreground transition-colors">
-                    <Github className="w-6 h-6" />
-                  </a>
-                )}
-              </div>
-
-              <div className="mt-8">
-                <p className="text-sm font-bold tracking-widest text-foreground/40 uppercase mb-4">
-                  // {project.category}
-                </p>
-                <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-6 group-hover:translate-x-2 transition-transform duration-500">
-                  {project.title}
-                </h3>
-                <p className="text-foreground/60 text-lg leading-relaxed max-w-md mb-8">
-                  {project.description}
-                </p>
-              </div>
-
-              <div className="mt-auto">
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {project.tech.map((t) => (
-                    <span key={t} className="text-[10px] font-bold tracking-tighter border border-foreground/20 px-2 py-1 uppercase text-foreground/40 group-hover:border-foreground/40 group-hover:text-foreground/60 transition-colors">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                
-                <Link href={`/projects/${project.slug}`} className="flex items-center gap-2 text-foreground/40 group-hover:text-foreground transition-all duration-300 font-bold uppercase tracking-widest text-xs cursor-pointer">
-                  Case Study
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
+        {/* ALL PROJECTS Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-12 md:mt-20 flex justify-start"
+        >
+          <a
+            href={PROJECTS[0].github || "https://github.com/Jatiiiiiiiin"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-5 py-2.5 bg-white border border-foreground/10 hover:border-foreground/30 text-foreground font-bold text-xs uppercase tracking-widest transition-all shadow-sm group"
+          >
+            ALL PROJECTS
+            <div className="w-5 h-5 bg-accent flex items-center justify-center text-white rounded-sm group-hover:scale-110 transition-transform">
+              <ArrowUpRight className="w-3 h-3" />
             </div>
-          ))}
-        </div>
-
-        <div className="mt-40 border-t border-foreground/10 pt-20">
-          <h3 className="text-sm font-black tracking-[0.2em] text-foreground/30 uppercase mb-12">
-            Other Experiments & Archive
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {ADDITIONAL_PROJECTS.map((p) => (
-              <div key={p} className="group p-8 border border-foreground/5 hover:border-foreground/20 transition-all cursor-pointer">
-                <h4 className="text-xl font-bold text-foreground/60 group-hover:text-foreground transition-colors">
-                  {p}
-                </h4>
-                <p className="text-xs text-foreground/20 mt-2 font-mono">View source — GitHub</p>
-              </div>
-            ))}
-          </div>
-        </div>
+          </a>
+        </motion.div>
       </div>
     </section>
+  );
+}
+
+function ProjectCard({
+  project,
+  index,
+  isWide,
+}: {
+  project: (typeof PROJECTS)[0];
+  index: number;
+  isWide: boolean;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Scroll-driven Zoom to Stop Animation
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "center center"],
+  });
+
+  // Image starts at scale 1.15 and smoothly zooms down to 1.0 (and stops at 1.0)
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1.15, 1.0]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.4], [0.8, 1]);
+
+  return (
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.7, delay: (index % 2) * 0.12 }}
+      className={`group w-full ${isWide ? "md:col-span-2 max-w-[850px]" : "max-w-[400px] mx-auto md:mx-0"} ${
+        index % 2 === 1 && !isWide ? "md:mt-12" : ""
+      }`}
+    >
+      <Link href={`/projects/${project.slug}`} className="block">
+        {/* Exact Framed Card Frame from Reference */}
+        <div className="p-2 md:p-2.5 bg-white border border-foreground/10 shadow-sm group-hover:shadow-md transition-all rounded-sm">
+          {/* Scroll Zoom Image Container */}
+          <div
+            className={`relative w-full overflow-hidden bg-foreground/5 ${
+              isWide ? "aspect-[16/9] md:aspect-[21/9]" : "aspect-[4/3]"
+            }`}
+          >
+            <motion.div
+              style={{ scale: imageScale, opacity: imageOpacity }}
+              className="w-full h-full relative"
+            >
+              <Image
+                src={
+                  PROJECT_IMAGES[project.slug] ||
+                  "/images/project-ai-youtube.png"
+                }
+                alt={project.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </motion.div>
+          </div>
+
+          {/* Minimalist Label Strip */}
+          <div className="mt-2.5 px-2 py-1.5 bg-[#F0F0EC] flex items-center justify-between">
+            <div className="flex items-center gap-1.5 min-w-0">
+              <span className="text-accent text-[10px] flex-shrink-0">✳</span>
+              <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.1em] uppercase text-foreground/80 truncate">
+                {project.title}
+              </span>
+            </div>
+            <span className="text-[10px] sm:text-[11px] font-medium text-foreground/50 tracking-wider flex-shrink-0 ml-2">
+              /{project.category.split(" ")[0]}
+            </span>
+          </div>
+        </div>
+      </Link>
+    </motion.div>
   );
 }

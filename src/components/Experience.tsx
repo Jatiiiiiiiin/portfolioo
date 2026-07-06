@@ -1,29 +1,52 @@
 "use client";
 
-import { RESUME_DATA } from "@/data/resume";
 import { motion } from "framer-motion";
-import { Briefcase, GraduationCap, Calendar, MapPin } from "lucide-react";
+import { RESUME_DATA } from "@/data/resume";
+import { Briefcase, GraduationCap, MapPin } from "lucide-react";
 
 export default function Experience() {
   const { experience, education } = RESUME_DATA;
 
   return (
-    <section id="experience" className="relative z-20 bg-background py-32 px-6 md:px-24">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
-          
+    <section
+      id="experience"
+      className="relative bg-white py-28 md:py-40 px-6 md:px-12"
+    >
+      <div className="max-w-[1400px] mx-auto">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-16 md:mb-24"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-accent text-sm">✳</span>
+            <span className="text-xs font-bold tracking-[0.2em] uppercase text-foreground/50">
+              CAREER PATH
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-8xl font-black tracking-tighter uppercase leading-[0.85]">
+            WORK &
+            <br />
+            <span className="text-foreground/30">EDUCATION</span>
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24">
           {/* Work Experience */}
           <div>
-            <div className="flex items-center gap-4 mb-16">
-              <div className="p-3 bg-foreground/5 border border-foreground/10 rounded-xl">
-                <Briefcase className="w-6 h-6 text-foreground" />
+            <div className="flex items-center gap-3 mb-10">
+              <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center">
+                <Briefcase className="w-5 h-5 text-white" />
               </div>
-              <h2 className="text-4xl font-bold tracking-tighter text-foreground uppercase">
-                Work<br />Experience
-              </h2>
+              <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-foreground/50">
+                Work Experience
+              </h3>
             </div>
 
-            <div className="space-y-12">
+            <div className="space-y-8">
               {experience.map((exp, index) => (
                 <motion.div
                   key={exp.company}
@@ -31,35 +54,38 @@ export default function Experience() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative pl-8 border-l border-foreground/10 group"
+                  className="relative pl-8 border-l-2 border-foreground/10 group hover:border-accent transition-colors"
                 >
-                  <div className="absolute left-[-5px] top-0 w-[9px] h-[9px] rounded-full bg-foreground/20 group-hover:bg-foreground transition-colors" />
-                  
-                  <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
-                    <h3 className="text-2xl font-bold text-foreground group-hover:text-foreground/80 transition-colors">
+                  {/* Dot */}
+                  <div className="absolute left-[-7px] top-1 w-3 h-3 rounded-full bg-foreground/10 group-hover:bg-accent transition-colors" />
+
+                  <div className="mb-3">
+                    <h4 className="text-xl font-bold text-foreground">
                       {exp.role}
-                    </h3>
-                    <span className="text-xs font-black tracking-widest uppercase text-foreground/40 bg-foreground/5 px-3 py-1 rounded-full border border-foreground/5">
-                      {exp.period}
-                    </span>
-                  </div>
-                  
-                  <div className="flex items-center gap-4 text-sm text-foreground/40 mb-6 font-medium">
-                    <span className="flex items-center gap-1.5 text-foreground/60">
-                      {exp.company}
-                    </span>
-                    <span className="w-1 h-1 rounded-full bg-foreground/10" />
-                    <span className="flex items-center gap-1.5">
-                      <MapPin className="w-3.5 h-3.5" />
-                      {exp.location}
-                    </span>
+                    </h4>
+                    <div className="flex flex-wrap items-center gap-3 mt-1">
+                      <span className="text-sm font-medium text-foreground/60">
+                        {exp.company}
+                      </span>
+                      <span className="w-1 h-1 rounded-full bg-foreground/20" />
+                      <span className="flex items-center gap-1 text-xs text-foreground/40">
+                        <MapPin className="w-3 h-3" />
+                        {exp.location}
+                      </span>
+                    </div>
                   </div>
 
-                  <ul className="space-y-3">
+                  <span className="inline-block px-3 py-1 bg-foreground/5 rounded-full text-[10px] font-bold tracking-widest uppercase text-foreground/40 mb-4">
+                    {exp.period}
+                  </span>
+
+                  <ul className="space-y-2">
                     {exp.description.map((item, i) => (
-                      <li key={i} className="text-foreground/50 leading-relaxed text-sm flex gap-3">
-                        <span className="text-foreground/20 mt-1.5 text-[10px]">0{i + 1}</span>
-                        {item}
+                      <li
+                        key={i}
+                        className="text-sm text-foreground/50 leading-relaxed"
+                      >
+                        — {item}
                       </li>
                     ))}
                   </ul>
@@ -70,16 +96,16 @@ export default function Experience() {
 
           {/* Education */}
           <div>
-            <div className="flex items-center gap-4 mb-16">
-              <div className="p-3 bg-foreground/5 border border-foreground/10 rounded-xl">
-                <GraduationCap className="w-6 h-6 text-foreground" />
+            <div className="flex items-center gap-3 mb-10">
+              <div className="w-10 h-10 rounded-xl bg-foreground flex items-center justify-center">
+                <GraduationCap className="w-5 h-5 text-white" />
               </div>
-              <h2 className="text-4xl font-bold tracking-tighter text-foreground uppercase">
-                Academic<br />Background
-              </h2>
+              <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-foreground/50">
+                Education
+              </h3>
             </div>
 
-            <div className="space-y-12">
+            <div className="space-y-8">
               {education.map((edu, index) => (
                 <motion.div
                   key={edu.school}
@@ -87,41 +113,33 @@ export default function Experience() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="p-8 border border-foreground/5 bg-foreground/[0.02] hover:border-foreground/20 transition-all rounded-2xl group"
+                  className="p-6 border border-foreground/5 rounded-2xl hover:border-accent/20 transition-colors group"
                 >
-                  <div className="flex justify-between items-start mb-6">
-                    <div>
-                      <h3 className="text-xl font-bold text-foreground group-hover:text-foreground/80 transition-colors mb-2">
-                        {edu.school}
-                      </h3>
-                      <p className="text-foreground/40 text-sm font-medium">
-                        {edu.degree}
-                      </p>
-                    </div>
-                    <Calendar className="w-5 h-5 text-foreground/20 group-hover:text-foreground/40 transition-colors" />
-                  </div>
+                  <h4 className="text-lg font-bold text-foreground mb-1">
+                    {edu.school}
+                  </h4>
+                  <p className="text-sm text-foreground/50 mb-4">
+                    {edu.degree}
+                  </p>
 
-                  <div className="flex flex-wrap items-center gap-4 text-xs font-black tracking-widest uppercase text-foreground/30">
-                    <span className="px-3 py-1 bg-foreground/5 rounded-full border border-foreground/5">
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    <span className="px-3 py-1 bg-foreground/5 rounded-full text-[10px] font-bold tracking-widest uppercase text-foreground/40">
                       {edu.period}
                     </span>
-                    <span>{edu.location}</span>
+                    <span className="px-3 py-1 bg-foreground/5 rounded-full text-[10px] font-bold tracking-widest uppercase text-foreground/40">
+                      {edu.location}
+                    </span>
                   </div>
 
                   {edu.details.length > 0 && (
-                    <div className="mt-6 pt-6 border-t border-foreground/5">
-                      {edu.details.map((detail, i) => (
-                        <p key={i} className="text-2xl font-bold text-foreground/60">
-                          {detail}
-                        </p>
-                      ))}
-                    </div>
+                    <p className="text-2xl font-bold text-accent">
+                      {edu.details[0]}
+                    </p>
                   )}
                 </motion.div>
               ))}
             </div>
           </div>
-
         </div>
       </div>
     </section>

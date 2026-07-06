@@ -1,32 +1,29 @@
-import ScrollyCanvas from "@/components/ScrollyCanvas";
-import Overlay from "@/components/Overlay";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import About from "@/components/About";
+import Services from "@/components/Services";
+import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
+import WhyChooseMe from "@/components/WhyChooseMe";
 import Certifications from "@/components/Certifications";
+import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
-import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-background text-foreground transition-colors duration-500">
-      <ThemeToggle />
-      {/* 
-        The ScrollyCanvas component contains a 500vh container.
-        The Overlay sits on top as a fixed element linked to scroll.
-      */}
-      <div className="relative z-20">
-        <ScrollyCanvas />
-        <Overlay />
-      </div>
-
-      <div className="relative z-30">
-        <About />
-        <Experience />
-        <Projects />
-        <Certifications />
-        <Footer />
-      </div>
+    <main className="relative min-h-screen">
+      <Navbar />
+      <Hero />
+      <Projects />
+      <About />
+      <Services />
+      <Skills />
+      <Experience />
+      <WhyChooseMe />
+      <Certifications />
+      <FAQ />
+      <Footer />
     </main>
   );
 }
