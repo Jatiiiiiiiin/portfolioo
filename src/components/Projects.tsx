@@ -28,28 +28,28 @@ export default function Projects() {
       id="projects"
       className="relative bg-background py-20 md:py-36 px-4 sm:px-6 md:px-12 border-t border-foreground/5"
     >
-      {/* Controlled Container Max-Width for Compact Layout */}
-      <div className="max-w-[1080px] mx-auto">
+      {/* Container Layout */}
+      <div className="max-w-[1140px] mx-auto">
         {/* Header - Exact Reference Match */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-12 md:mb-20"
+          className="mb-14 md:mb-20"
         >
-          <div className="inline-block px-3 py-1 bg-white border border-foreground/10 rounded text-[10px] font-bold tracking-[0.2em] uppercase text-foreground/60 mb-4 shadow-sm">
+          <div className="inline-block px-3 py-1 bg-white border border-foreground/10 rounded text-[10px] font-bold tracking-[0.2em] uppercase text-foreground/60 mb-5 shadow-sm">
             <span className="text-accent mr-1.5">✳</span>PORTFOLIO
           </div>
-          <h2 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter uppercase leading-[0.85] text-foreground">
+          <h2 className="text-5xl md:text-8xl font-black tracking-tighter uppercase leading-[0.85] text-foreground">
             OUR
             <br />
             <span className="text-foreground/30">PROJECTS.</span>
           </h2>
         </motion.div>
 
-        {/* 2-Column Compact Grid with Closed Gap */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start max-w-[850px] mx-auto">
+        {/* 2-Column Grid: Compact Small Cards (370px wide) with In-Between Gap */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 lg:gap-28 items-start w-full">
           {displayProjects.map((project, index) => {
             const isWide = index === 2;
 
@@ -70,7 +70,7 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-12 md:mt-20 flex justify-start"
+          className="mt-14 md:mt-20 flex justify-start"
         >
           <a
             href={PROJECTS[0].github || "https://github.com/Jatiiiiiiiin"}
@@ -117,8 +117,12 @@ function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.7, delay: (index % 2) * 0.12 }}
-      className={`group w-full ${isWide ? "md:col-span-2 max-w-[850px]" : "max-w-[400px] mx-auto md:mx-0"} ${
-        index % 2 === 1 && !isWide ? "md:mt-12" : ""
+      className={`group w-full ${
+        isWide
+          ? "md:col-span-2 max-w-[760px] mx-auto"
+          : index % 2 === 0
+          ? "max-w-[370px]"
+          : "max-w-[370px] md:ml-auto md:mt-20"
       }`}
     >
       <Link href={`/projects/${project.slug}`} className="block">
@@ -147,10 +151,10 @@ function ProjectCard({
           </div>
 
           {/* Minimalist Label Strip */}
-          <div className="mt-2.5 px-2 py-1.5 bg-[#F0F0EC] flex items-center justify-between">
+          <div className="mt-2.5 px-2.5 py-1.5 bg-[#F0F0EC] flex items-center justify-between">
             <div className="flex items-center gap-1.5 min-w-0">
               <span className="text-accent text-[10px] flex-shrink-0">✳</span>
-              <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.1em] uppercase text-foreground/80 truncate">
+              <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.12em] uppercase text-foreground/80 truncate">
                 {project.title}
               </span>
             </div>
