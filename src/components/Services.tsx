@@ -96,7 +96,7 @@ export default function Services() {
                 <div className="hidden md:block">
                   <div className="relative w-[200px] h-[140px] rounded-xl overflow-hidden img-hover-scale">
                     <Image
-                      src={SERVICE_IMAGES[service.id] || "/images/project-ai-youtube.png"}
+                      src={SERVICE_IMAGES[service.id] || "/images/service-ai-ml.png"}
                       alt={service.title}
                       fill
                       className="object-cover"
