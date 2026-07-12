@@ -6,10 +6,10 @@ import { motion } from "framer-motion";
 import { RESUME_DATA } from "@/data/resume";
 
 const SERVICE_IMAGES: Record<string, string> = {
-  "001": "/images/project-ai-youtube.png",
-  "002": "/images/project-asterix-find.png",
-  "003": "/images/project-quikping.png",
-  "004": "/images/project-ai-youtube.png",
+  "001": "/images/service-ai-ml.png",
+  "002": "/images/service-fullstack.png",
+  "003": "/images/service-automation.png",
+  "004": "/images/service-iot.png",
 };
 
 export default function Services() {

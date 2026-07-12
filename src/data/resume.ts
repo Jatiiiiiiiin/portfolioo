@@ -99,7 +99,7 @@ export const RESUME_DATA: ResumeData = {
         "Developing AI-powered IoT solutions integrating smart hardware with cloud-based ML models for real-time data processing and analytics.",
         "Building workflow automation systems using n8n to streamline business processes, reducing manual intervention by ~80%."
       ],
-      image: "/images/project-ai-youtube.png"
+      image: "/images/service-iot.png"
     },
     {
       company: "Primus Software Development India Pvt. Ltd.",

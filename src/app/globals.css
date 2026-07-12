@@ -58,6 +58,23 @@ body::-webkit-scrollbar,
   font-size: 0.75rem;
 }
 
+/* Right-to-left accent fill: hover on desktop, press (:active) on touch.
+   `a:active &` lets a tap on a wrapping card link trigger the fill too.
+   Pair with hover:text-white / active:text-white (or group-active) for the text swap. */
+@utility fill-rtl {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  background-position: 100% 0;
+  transition: background-size 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s ease, border-color 0.3s ease;
+  &:hover,
+  &:active,
+  a:active & {
+    background-size: 100% 100%;
+  }
+}
+
 @utility no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;

@@ -2,9 +2,13 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { RESUME_DATA } from "@/data/resume";
+
+// three/rapier are client-only (WASM physics); skip SSR for the badge
+const Lanyard = dynamic(() => import("./Lanyard"), { ssr: false });
 
 export default function Hero() {
   const { firstName, name, title, tagline, email } = RESUME_DATA;
@@ -113,6 +117,14 @@ export default function Hero() {
           {firstName}
         </h1>
       </motion.div>
+
+      {/* Lanyard ID badge — hangs from the very top on the left, draggable (desktop only).
+          Lower camera y pushes the strap anchor above the canvas edge so it starts at the navbar. */}
+      {/* Canvas extends above the viewport so the strap's anchor is off-screen
+          and the visible strap runs from the very top edge. */}
+      <div className="absolute top-[-10vh] left-[2%] w-[180px] h-[75vh] lg:top-[-15vh] lg:left-[8%] lg:w-[420px] lg:h-[105vh] z-30">
+        <Lanyard frontImage="/lanyard/card-front.png" position={[0, -1.5, 30]} />
+      </div>
 
       {/* Floating Project Card (top right - hidden on small mobile) */}
       <motion.div
